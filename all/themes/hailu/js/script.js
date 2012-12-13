@@ -13,26 +13,25 @@
 (function ($, Drupal, window, document, undefined) {
 $(document).ready(function() {
   
-  $('div.test').text('lorem ipsum');
+  var testdiv = $('div.test');
 
-  button1 = $('button#one').text('start').addClass('test').width(450).height(350).css({ 'font-size': 120, 'background-color': 'green' });  
-  button2 = $('button#two').text('stop').addClass('test').width(450).height(350).css({ 'font-size': 120 , 'background-color': 'red'});
+  button1 = $('button#one').text('start').addClass('test').width(450).height(350).css({ 'font-size': 100, 'background-color': 'green' });  
+  button2 = $('button#two').text('stop').addClass('test').width(450).height(350).css({ 'font-size': 100 , 'background-color': 'red'});
 //  console.log(button2);
   
   button1.click(function () { 
-
+//    testdiv.append('1234').append('5678 <br>');
     alert('tracking start');
     
     var watchId = navigator.geolocation.watchPosition(doGeo);  
-        alert(watchId);
 
     function doGeo(position) {
       var lat = position.coords.latitude;
       var lon = position.coords.longitude;
 
-      alert('latitude: '+lat + 'longitude: '+lon);
+//      alert('latitude: '+lat + 'longitude: '+lon);
 
-      $('div.test').append(lat).append(lon);
+      testdiv.append('<strong>lat:</strong> '+lat+' '+'<strong>lon:</strong> '+lon+'<br>');
     }
     
     button2.click(function () {  
