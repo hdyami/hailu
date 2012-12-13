@@ -11,10 +11,11 @@
 // - http://drupal.org/node/1446420
 // - http://www.adequatelygood.com/2010/3/JavaScript-Module-Pattern-In-Depth
 (function ($, Drupal, window, document, undefined) {
+$(document).ready(function() {
+  $('div.test').append('booger');
 
-$("div").text("this is a test");
+  $('button').text('push me').addClass('test').width(800).height(550).css({ 'font-size': 160 });
+  console.log($('button'));
 
-// Place your code here.
-
-
+});
 })(jQuery, Drupal, this, this.document);

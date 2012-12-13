@@ -12,7 +12,7 @@
 ; page at admin/appearance.
 
 screenshot  = screenshot.png
-Name        = hailu 
+Name        = Hailu
 description = This is a zen subtheme.
 
 
@@ -78,7 +78,6 @@ stylesheets[all][] = css/print.css
 ; Optionally add some JavaScripts to your theme.
 
 scripts[] = js/script.js
-
 
 
 ; This section lists the regions defined in Zen's default page.tpl.php and
