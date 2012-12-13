@@ -12,10 +12,21 @@
 // - http://www.adequatelygood.com/2010/3/JavaScript-Module-Pattern-In-Depth
 (function ($, Drupal, window, document, undefined) {
 $(document).ready(function() {
-  $('div.test').append('booger');
+  $('div.test').text('lorem ipsum');
 
-  $('button').text('push me').addClass('test').width(800).height(550).css({ 'font-size': 160 });
-  console.log($('button'));
+  button = $('button').text('push me').addClass('test').width(800).height(550).css({ 'font-size': 160 });
+  console.log(button);
+  
+  button.click(function () {
+    navigator.geolocation.getCurrentPosition(doGeo);  
+  })
+  function doGeo(position) {
+    latitude = position.coords.latitude;
+    longitude = position.coords.longitude;
+    
+   console.log(latitude);
+   console.log(longitude);
 
+  }
 });
 })(jQuery, Drupal, this, this.document);
