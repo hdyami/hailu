@@ -15,12 +15,17 @@ $(document).ready(function() {
   
   $('div.test').text('lorem ipsum');
 
-  button = $('button').text('push me').addClass('test').width(800).height(550).css({ 'font-size': 160 });
-  console.log(button);
+  button1 = $('button#one').text('start').addClass('test').width(450).height(350).css({ 'font-size': 120, 'background-color': 'green' });  
+  button2 = $('button#two').text('stop').addClass('test').width(450).height(350).css({ 'font-size': 120 , 'background-color': 'red'});
+//  console.log(button2);
   
-  button.click(function () {  alert('test');
+  button1.click(function () { 
 
-    navigator.geolocation.getCurrentPosition(doGeo);  
+    alert('tracking start');
+    
+    var watchId = navigator.geolocation.watchPosition(doGeo);  
+        alert(watchId);
+
     function doGeo(position) {
       var lat = position.coords.latitude;
       var lon = position.coords.longitude;
@@ -29,6 +34,12 @@ $(document).ready(function() {
 
       $('div.test').append(lat).append(lon);
     }
+    
+    button2.click(function () {  
+      navigator.geolocation.clearWatch(watchId);
+      
+      alert('tracking stopped');
+    })
   })
   
 });
