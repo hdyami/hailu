@@ -18,17 +18,18 @@ $(document).ready(function() {
   button = $('button').text('push me').addClass('test').width(800).height(550).css({ 'font-size': 160 });
   console.log(button);
   
-  button.click(function () {
+  button.click(function () {  alert('test');
+
     navigator.geolocation.getCurrentPosition(doGeo);  
+    function doGeo(position) {
+      var lat = position.coords.latitude;
+      var lon = position.coords.longitude;
+
+      alert('latitude: '+lat + 'longitude: '+lon);
+
+      $('div.test').append(lat).append(lon);
+    }
   })
-  function doGeo(position) {
-    latitude = position.coords.latitude;
-    longitude = position.coords.longitude;
-    
-   console.log(latitude);
-   console.log(longitude);
-   
-   $('div.test').append(latitude).append(longitude);
-  }
+  
 });
 })(jQuery, Drupal, this, this.document);
