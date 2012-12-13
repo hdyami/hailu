@@ -31,7 +31,7 @@ $(document).ready(function() {
 
 //      alert('latitude: '+lat + 'longitude: '+lon);
 
-      testdiv.append('<strong>lat:</strong> '+lat+' '+'<strong>lon:</strong> '+lon+'<br>');
+      testdiv.append('<p><strong>lat:</strong> '+lat+'<br>'+'<strong>lon:</strong> '+lon+'</p>');
     }
     
     button2.click(function () {  
