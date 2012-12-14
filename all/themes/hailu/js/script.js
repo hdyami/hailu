@@ -19,7 +19,7 @@ $(document).ready(function() {
     $('h1#page-title').text(data[1].description);
     
     var map = mapbox.map('map');
-    
+console.log(data[1]);    
     // After specifying multiple ids to mapbox.load, you'll get an array
     // of data objects back, with pre-initialized layer and markers members
     map.addLayer(data[1].layer);
@@ -34,9 +34,9 @@ $(document).ready(function() {
     button2 = $('button#two').text('stop').addClass('test').width(250).height(150).css({ 'font-size': 100 , 'background-color': 'red'});
 
     // start tracking
-    button1.click(function () { 
+    $('button#one').click(function () { 
       // testdiv.append('1234').append('5678 <br>');
-      alert('tracking start');
+      //alert('tracking start');
 
       var watchId = navigator.geolocation.watchPosition(doGeo);  
 
@@ -45,12 +45,16 @@ $(document).ready(function() {
         var lat = position.coords.latitude;
         var lon = position.coords.longitude;
         
-        map.zoom(16).center({ lat: lat, lon: lon });
 
+	var markerLayer = mapbox.markers.layer().csv('lat,lon,marker-color\n'+lat+','+lon+',#000');
+
+	map.addLayer(markerLayer);
+
+        map.center({ lat: lat, lon: lon }, true);
       }
 
       // stop tracking
-      button2.click(function () {  
+      $('button#two').click(function () {  
         navigator.geolocation.clearWatch(watchId);
 
         alert('tracking stopped');
