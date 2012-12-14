@@ -5,9 +5,25 @@
  * Style anything that isn't in the $content variable.
  */
 
-
-.node { /* Node wrapper */
+#map { position:relative; top:0; bottom:0; width:500px; height: 300px;}
+a.zoomer {
+  position: absolute;
+  z-index: 200;
+  text-decoration: none;
+  text-align: center;
 }
+
+a.zoomin {
+  top: 2px;
+  font-size: 35px;
+}
+
+a.zoomout {
+  top: 25px;
+  font-size: 55px;
+
+}
+
 
 .preview .node { /* Preview of the content before submitting new or updated content */
   /* background-color: #ffffea; */ /* Drupal core uses a #ffffea background */

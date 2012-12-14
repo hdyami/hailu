@@ -161,10 +161,9 @@ function hailu_preprocess_page(&$variables, $hook) {
  * @param $hook
  *   The name of the template being rendered ("node" in this case.)
  */
-/* -- Delete this line if you want to use this function
 function hailu_preprocess_node(&$variables, $hook) {
-  $variables['sample_variable'] = t('Lorem ipsum.');
-
+  drupal_add_js('http://api.tiles.mapbox.com/mapbox.js/v0.6.7/mapbox.js', 'external');
+  drupal_add_css('http://api.tiles.mapbox.com/mapbox.js/v0.6.7/mapbox.css');
   // Optionally, run node-type-specific preprocess functions, like
   // hailu_preprocess_node_page() or hailu_preprocess_node_story().
   $function = __FUNCTION__ . '_' . $variables['node']->type;
@@ -172,7 +171,6 @@ function hailu_preprocess_node(&$variables, $hook) {
     $function($variables, $hook);
   }
 }
-// */
 
 /**
  * Override or insert variables into the comment templates.

@@ -15,6 +15,7 @@
   }
 
   .node-title { /* Node title */
+    font-size:30px;
   }
 
   .user-picture { /* The picture of the node author */
@@ -61,4 +62,8 @@
   p.unpublished { /* The word "Unpublished" displayed underneath the content. */
     @include unpublished-div;
   }
+}
+
+#map {
+  position:absolute; top:0; bottom:0; width:100%;
 }

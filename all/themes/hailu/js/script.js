@@ -12,34 +12,58 @@
 // - http://www.adequatelygood.com/2010/3/JavaScript-Module-Pattern-In-Depth
 (function ($, Drupal, window, document, undefined) {
 $(document).ready(function() {
-  
   var testdiv = $('div.test');
-
-  button1 = $('button#one').text('start').addClass('test').width(450).height(350).css({ 'font-size': 100, 'background-color': 'green' });  
-  button2 = $('button#two').text('stop').addClass('test').width(450).height(350).css({ 'font-size': 100 , 'background-color': 'red'});
-//  console.log(button2);
   
+  // start buttons
+  // initialize buttons
+  button1 = $('button#one').text('start').addClass('test').width(250).height(150).css({ 'font-size': 100, 'background-color': 'green' });  
+  button2 = $('button#two').text('stop').addClass('test').width(250).height(150).css({ 'font-size': 100 , 'background-color': 'red'});
+  
+  // start tracking
   button1.click(function () { 
-//    testdiv.append('1234').append('5678 <br>');
-    alert('tracking start');
+    // testdiv.append('1234').append('5678 <br>');
+    alert('trackifng start');
     
     var watchId = navigator.geolocation.watchPosition(doGeo);  
 
+    // call back fires every time position changes
     function doGeo(position) {
       var lat = position.coords.latitude;
       var lon = position.coords.longitude;
 
-//      alert('latitude: '+lat + 'longitude: '+lon);
-
-      testdiv.append('<p><strong>lat:</strong> '+lat+'<br>'+'<strong>lon:</strong> '+lon+'</p>');
+//      print lat lon
+//      testdiv.append('<p><strong>lat:</strong> '+lat+'<br>'+'<strong>lon:</strong> '+lon+'</p>');
     }
     
+    // stop tracking
     button2.click(function () {  
       navigator.geolocation.clearWatch(watchId);
       
       alert('tracking stopped');
     })
-  })
+  }) // end button1.click();
+  // end buttons
   
+  // start map
+  mapbox.load(['hailu.map-8wfvcuee', 'hailu.map-8wfvcuee'], function(data) {
+    $('h1#page-title').text(data[1].description);
+    
+    var map = mapbox.map('map');
+
+    // After specifying multiple ids to mapbox.load, you'll get an array
+    // of data objects back, with pre-initialized layer and markers members
+    map.addLayer(data[1].layer);
+    map.addLayer(data[0].markers);
+
+    // Zoom and center the map
+    map.zoom(16).center(data[0].center);
+    
+    map.ui.zoomer.add();
+
+    // Attribute map
+    map.ui.attribution.add().content('<a href="http://mapbox.com/about/maps">Terms &amp; Feedback</a>');
+  });
+  // end map
+
 });
 })(jQuery, Drupal, this, this.document);
